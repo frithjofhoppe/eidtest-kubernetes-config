@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eidtest-agents-loadbalancer
+  labels:
+    app: eidtest-agents
+spec:
+  type: LoadBalancer
+  selector:
+    app: eidtest-agents
+  ports:
+    - port: 8001
+      name: http-8001
+      protocol: TCP
+      targetPort: http-8001
+    - port: 8002
+      name: http-8002
+      protocol: TCP
+      targetPort: http-admin-api
+    - port: 8003
+      name: agent-holder1
+      protocol: TCP
+      targetPort: agent-holder1
+    - port: 8004
+      name: admin-holder1
+      protocol: TCP
+      targetPort: admin-holder1
+    - port: 8005
+      name: agent-mediator1
+      protocol: TCP
+      targetPort: agent-mediator1
+    - port: 8006
+      name: admin-mediator1
+      protocol: TCP
+      targetPort: admin-mediator1
+    - port: 6543
+      name: tails-server
+      protocol: TCP
+      targetPort: tails-server

@@ -1,0 +1,50 @@
+{
+  "auto_verify": true,
+  "comment": "Proof is officeBit",
+  "connection_id": "0ca5bfa9-991d-417e-a282-8f80917e6cec",
+  "presentation_request": {
+    "indy": {
+      "name": "Member of BIT",
+      "requested_attributes": {
+        "0_federalOffice": {
+          "name": "federalOffice",
+          "restrictions": [
+            {
+              "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:testrevoc5"
+            }
+          ]
+        },
+        "0_firstName": {
+          "name": "firstName",
+          "restrictions": [
+            {
+              "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:testrevoc5"
+            }
+          ]
+        },
+        "0_surname": {
+          "name": "surname",
+          "restrictions": [
+            {
+              "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:testrevoc5"
+            }
+          ]
+        }
+      },
+      "requested_predicates": {
+        "0_federalOffice_ge_bit": {
+          "name": "validTo",
+          "p_type": "<=",
+          "p_value": 20220620,
+          "restrictions": [
+            {
+              "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:testrevoc5"
+            }
+          ]
+        }
+      },
+      "version": "1.0"
+    }
+  },
+  "trace": false
+}

@@ -1,0 +1,52 @@
+{
+  "connection_id": "{{connectionId}}",
+  "proof_request": {
+    "requested_attributes": {
+      "0_federalOffice": {
+        "name": "federalOffice",
+        "restrictions": [
+          {
+            "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:PreviewGovIdv1"
+          }
+        ],
+        "non_revoked": {
+          "from": ,
+          "to": 1655852400
+        }
+      },
+      "0_firstName": {
+        "name": "firstName",
+        "restrictions": [
+          {
+            "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:PreviewGovIdv1"
+          }
+        ]
+      },
+      "0_surname": {
+        "name": "surname",
+        "restrictions": [
+          {
+            "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:PreviewGovIdv1"
+          }
+        ]
+      }
+    },
+    "requested_predicates": {
+      "0_federalOffice_ge_bit": {
+        "name": "validTo",
+        "p_type": ">=",
+        "p_value": 20220620,
+        "restrictions": [
+          {
+            "cred_def_id": "D3JT8C1hzRuewX24PEH2Kc:3:CL:10:PreviewGovIdv1"
+          }
+        ]
+      }
+    },
+    "name": "Proof request for entering BIT Building",
+    "version": "1.0"
+  },
+  "auto_verify": true,
+  "comment": "Enter BIT Building",
+  "trace": false
+}

@@ -1,0 +1,206 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eidtest-agents
+spec:
+  selector:
+    matchLabels:
+      app: eidtest-agents
+  template:
+      metadata:
+        labels:
+          app: eidtest-agents
+      spec:
+        nodeSelector:
+          kubernetes.io/os: linux
+        containers:
+          - name: eidtest-trustee1-container
+            image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.4-rc2
+            env:
+              - name: ACAPY_LABEL
+                value: "Trustee1-BIT"
+              - name: ACAPY_ENDPOINT
+                value: "http://20.250.57.123:8001"
+              - name: ACAPY_OUTBOUND_TRANSPORT
+                value: "http"
+              - name: ACAPY_AUTO_PROVISION
+                value: "true"
+              - name: ACAPY_AUTO_ACCEPTS_INVITES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_MESSAGES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_PROPOSAL
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_OFFER
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_REQUEST
+                value: "true"
+              - name: ACAPY_AUTO_STORE_CREDENTIAL
+                value: "true"
+              - name: ACAPY_AUTO_VERIFY_PRESENTATION
+                value: "true"
+              - name: ACAPY_TAILS_SERVER_BASE_URL
+                value: "http://20.250.57.123:6543"
+              - name: ACAPY_GENESIS_URL
+                value: "https://eidteststorage.blob.core.windows.net/eidtest-public/pool_transactions_genesis"
+              - name: ACAPY_WALLET_TYPE
+                value: "indy"
+              - name: ACAPY_WALLET_NAME
+                value: "trustee1"
+              - name: ACAPY_WALLET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: trustee1-aca-py
+                    key: walletKey
+              - name: ACAPY_WALLET_SEED
+                valueFrom:
+                  secretKeyRef:
+                    name: trustee1-aca-py
+                    key: seed
+              - name: ACAPY_ADMIN_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: trustee1-aca-py
+                    key: apiKey
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+              limits:
+                cpu: 250m
+                memory: 256Mi
+            ports:
+              - containerPort: 8001
+                name: http-8001
+              - containerPort: 8002
+                name: http-admin-api
+            args: ["start","--inbound-transport","http","0.0.0.0","8001","--admin","0.0.0.0","8002"]
+          - name: eidtest-holder1-container
+            image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.4-rc2
+            env:
+              - name: ACAPY_LABEL
+                value: "Holder1-BIT"
+              - name: ACAPY_ENDPOINT
+                value: "http://20.250.57.123:8003"
+              - name: ACAPY_OUTBOUND_TRANSPORT
+                value: "http"
+              - name: ACAPY_AUTO_PROVISION
+                value: "true"
+              - name: ACAPY_AUTO_ACCEPTS_INVITES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_MESSAGES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_PROPOSAL
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_OFFER
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_REQUEST
+                value: "true"
+              - name: ACAPY_AUTO_STORE_CREDENTIAL
+                value: "true"
+              - name: ACAPY_AUTO_VERIFY_PRESENTATION
+                value: "true"
+              - name: ACAPY_TAILS_SERVER_BASE_URL
+                value: "http://20.250.57.123:6543"
+              - name: ACAPY_GENESIS_URL
+                value: "https://eidteststorage.blob.core.windows.net/eidtest-public/pool_transactions_genesis"
+              - name: ACAPY_WALLET_TYPE
+                value: "indy"
+              - name: ACAPY_WALLET_NAME
+                value: "holder1"
+              - name: ACAPY_WALLET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: holder1-aca-py
+                    key: walletKey
+              - name: ACAPY_WALLET_SEED
+                valueFrom:
+                  secretKeyRef:
+                    name: holder1-aca-py
+                    key: seed
+              - name: ACAPY_ADMIN_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: holder1-aca-py
+                    key: apiKey
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+              limits:
+                cpu: 250m
+                memory: 256Mi
+            ports:
+              - containerPort: 8003
+                name: agent-holder1
+              - containerPort: 8004
+                name: admin-holder1
+            args: ["start","--inbound-transport","http","0.0.0.0","8003","--admin","0.0.0.0","8004"]
+          - name: eidtest-mediator1-container
+            image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.4-rc2
+            env:
+              - name: ACAPY_LABEL
+                value: "Mediator1-BIT"
+              - name: ACAPY_ENDPOINT
+                value: "http://20.250.57.123:8005"
+              - name: ACAPY_OUTBOUND_TRANSPORT
+                value: "http"
+              - name: ACAPY_AUTO_PROVISION
+                value: "true"
+              - name: ACAPY_AUTO_ACCEPTS_INVITES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_MESSAGES
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_PROPOSAL
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_OFFER
+                value: "true"
+              - name: ACAPY_AUTO_RESPOND_CREDENTIAL_REQUEST
+                value: "true"
+              - name: ACAPY_AUTO_STORE_CREDENTIAL
+                value: "true"
+              - name: ACAPY_AUTO_VERIFY_PRESENTATION
+                value: "true"
+              - name: ACAPY_MEDIATION_OPEN
+                value: "true"
+              - name: ACAPY_GENESIS_URL
+                value: "https://eidteststorage.blob.core.windows.net/eidtest-public/pool_transactions_genesis"
+              - name: ACAPY_WALLET_TYPE
+                value: "indy"
+              - name: ACAPY_WALLET_NAME
+                value: "mediator1"
+              - name: ACAPY_WALLET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: mediator1-aca-py
+                    key: walletKey
+              - name: ACAPY_WALLET_SEED
+                valueFrom:
+                  secretKeyRef:
+                    name: mediator1-aca-py
+                    key: seed
+              - name: ACAPY_ADMIN_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: mediator1-aca-py
+                    key: apiKey
+            resources:
+              requests:
+                cpu: 100m
+                memory: 128Mi
+              limits:
+                cpu: 250m
+                memory: 256Mi
+            ports:
+              - containerPort: 8005
+                name: agent-mediator1
+              - containerPort: 8006
+                name: admin-mediator1
+            args: [ "start","--inbound-transport","http","0.0.0.0","8005","--admin","0.0.0.0","8006" ]
+          - name: eidtest-tails-server
+            image: frithjofhoppe/indy-tails-server:v1
+            ports:
+              - containerPort: 6543
+                name: tails-server
+            args: ["tails-server","--host","0.0.0.0","--port","6543","--storage-path","."]
+

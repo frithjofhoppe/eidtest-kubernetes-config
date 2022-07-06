@@ -1,0 +1,33 @@
+{
+  "indy": {
+    "requested_attributes": {
+      "0_federalOffice": {
+        "cred_id": "a7b19bca-527a-40a7-98c9-83f8f828f963",
+        "revealed": true
+      },
+      "0_firstName": {
+        "cred_id": "a7b19bca-527a-40a7-98c9-83f8f828f963",
+        "revealed": true
+      },
+      "0_surname": {
+        "cred_id": "a7b19bca-527a-40a7-98c9-83f8f828f963",
+        "revealed": true
+      },
+      "0_validTo": {
+        "cred_id": "a7b19bca-527a-40a7-98c9-83f8f828f963",
+        "revealed": true
+      }
+    },
+    "requested_predicates": {
+      "0_federalOffice_ge_bit": {
+        "cred_id": "a7b19bca-527a-40a7-98c9-83f8f828f963",
+        "timestamp": 20220620
+      }
+    },
+    "self_attested_attributes": {
+      "Job": "Developer"
+    },
+    "trace": false
+  },
+  "trace": true
+}

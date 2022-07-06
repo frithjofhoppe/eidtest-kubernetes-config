@@ -1,0 +1,153 @@
+# Sample for issuing, prooving and revocing a credential
+
+###
+# @name Step 1 (Fetching connecting Id)
+GET {{baseUrl}}/connections
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+###
+# @name Step 2 (Sendig welcome message)
+POST {{baseUrl}}/connections/{{connectionId}}/send-message
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "content": "Hey, ich sende dir gleich deinen digitalen Bundesauweis zu :-)"
+}
+
+###
+# @name Step 3 (Issuing)
+# Issue credential with connectionId to mobileAgent and existing credential definition
+POST {{baseUrl}}/issue-credential/send-offer
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "connection_id": "{{connectionId}}",
+  "cred_def_id": "{{credentialDefinitionId}}",
+  "credential_preview": {
+    "attributes": [
+      {"name": "firstName", "value": "Frithjof"},
+      {"name": "surname", "value": "Hoppe"},
+      {"name": "validTo", "value": "20230601"},
+      {"name": "dateOfBirth", "value": "20001025"},
+      {"name": "federalOffice", "value": "BIT"},
+      {"name": "validFrom", "value": "20220704"}
+    ],
+    "@type": "issue-credential/1.0/credential-preview"
+  },
+  "auto_issue": true,
+  "auto_remove": false,
+  "comment": "Federal Gov Id",
+  "trace": true
+}
+> {%
+ client.global.set("credential_exchange_id", response.body.credential_exchange_id);
+ %}
+
+###
+# @name Step 4 (Request a proof)
+# Request a proof of the gov Id asking the attributes federalOffice, firstName, surname and validating (as predicate) if the identity card is still valid
+POST {{baseUrl}}/present-proof/send-request
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "connection_id": "{{connectionId}}",
+  "proof_request": {
+    "requested_attributes": {
+      "#1": {
+        "name": "federalOffice",
+        "restrictions": [
+          {
+            "cred_def_id": "{{credentialDefinitionId}}"
+          }
+        ],
+        "non_revoked": {
+          "from": {{nonRevokedFrom}},
+          "to": {{nonRevokedTo}}
+        }
+      },
+      "#2": {
+        "name": "firstName",
+        "restrictions": [
+          {
+            "cred_def_id": "{{credentialDefinitionId}}"
+          }
+        ],
+        "non_revoked": {
+          "from": {{nonRevokedFrom}},
+          "to": {{nonRevokedTo}}
+        }
+      },
+      "#3": {
+        "name": "surname",
+        "restrictions": [
+          {
+            "cred_def_id": "{{credentialDefinitionId}}"
+          }
+        ],
+          "non_revoked": {
+          "from": {{nonRevokedFrom}},
+          "to": {{nonRevokedTo}}
+        }
+      }
+    },
+    "requested_predicates": {
+      "#0": {
+        "name": "validTo",
+        "p_type": ">=",
+        "p_value": 20220624,
+        "restrictions": [
+          {
+            "cred_def_id": "{{credentialDefinitionId}}"
+          }
+        ],
+                "non_revoked": {
+          "from": {{nonRevokedFrom}},
+          "to": {{nonRevokedTo}}
+        }
+      }
+    },
+    "name": "Proof request for entering BIT Building",
+    "version": "1.0"
+  },
+  "auto_verify": true,
+  "comment": "Enter BIT Building",
+  "trace": false
+}
+> {%
+ client.global.set("presentation_exchange_id", response.body.presentation_exchange_id);
+ %}
+
+###
+# @name Step 5 (Check proof)
+GET {{baseUrl}}/present-proof/records/{{presentation_exchange_id}}
+X-API-KEY: {{apiKey}}
+
+###
+# @name Step 6 (Get credential revocation status)
+GET {{baseUrl}}/revocation/credential-record?cred_ex_id={{credential_exchange_id}}
+X-API-KEY: {{apiKey}}
+
+> {%
+ client.global.set("cred_rev_id", response.body.result.cred_rev_id);
+ client.global.set("rev_reg_id", response.body.result.rev_reg_id);
+%}
+
+###
+# @name Step 7 (Revoke credential)
+POST {{baseUrl}}/revocation/revoke
+X-API-KEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "comment": "Revoke credential",
+  "connection_id": "{{connectionId}}",
+  "cred_ex_id": "{{credential_exchange_id}}",
+  "notify": true,
+  "publish": true
+}
+###
+# To check if the credentials was sucessfully revoked, make an proof request with the same params. This time the attribute "verified" in the response shoulb be "false"

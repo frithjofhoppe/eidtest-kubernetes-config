@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eidtest-agents
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: eidtest-agents.44ed8ff543df4185a370.switzerlandnorth.aksapp.io
+      http:
+        paths:
+          - backend

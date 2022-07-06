@@ -1,0 +1,167 @@
+{
+  "connection_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "proof_request": {
+    "requested_attributes": {
+      "et_b4": {
+        "name": "favouriteDrink",
+        "names": [
+          "age",
+          "age"
+        ],
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "sit436": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "exercitation_c8": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "aliquad6": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "consectetur_45": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "id_68": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "sit_37a": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      },
+      "utd_": {
+        "name": "favouriteDrink",
+        "names": [
+          "age",
+          "age"
+        ],
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "quis6e9": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "elit_54": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "eiusmod1b": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      },
+      "ut_c8": {
+        "name": "favouriteDrink",
+        "names": [
+          "age",
+          "age"
+        ],
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "exercitation_e0e": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "quis_34_": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "dolore62a": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      },
+      "nulla_d6": {
+        "name": "favouriteDrink",
+        "names": [
+          "age",
+          "age"
+        ],
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "sit81f": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "ex_06a": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "ada": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "sunt_f84": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      },
+      "qui_0b": {
+        "name": "favouriteDrink",
+        "names": [
+          "age",
+          "age"
+        ],
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "cillum303": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "ad_d19": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "officiad": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "aute_8e_": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "eua2": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag",
+            "aliquip6": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      }
+    },
+    "requested_predicates": {
+      "nostrud_e7c": {
+        "name": "index",
+        "p_type": ">=",
+        "p_value": -3900227,
+        "non_revoked": {
+          "from": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          },
+          "to": {
+            "value": "<Error: Too many levels of nesting to fake this schema>"
+          }
+        },
+        "restrictions": [
+          {
+            "nulla608": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          },
+          {
+            "Loremc": "WgWxqztrNooG92RXvxSTWv:3:CL:20:tag"
+          }
+        ]
+      }
+    },
+    "name": "Proof request",
+    "non_revoked": {
+      "from": 1640995199,
+      "to": 1640995199
+    },
+    "nonce": "1",
+    "version": "1.0"
+  },
+  "auto_verify": false,
+  "comment": "consectetur ut veniam ut",
+  "trace": false
+}
